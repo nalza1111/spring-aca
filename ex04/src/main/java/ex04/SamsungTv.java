@@ -17,10 +17,11 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @Component //<bean id="">하고 같음
 public class SamsungTv implements Tv {
-	
+
+//Setter
 //	@Autowired//DI(의존성)주입
 //	Speaker speaker;
-	//이렇게도 가능
+//이렇게도 가능
 	@Setter(onMethod_ = {@Autowired})
 	Speaker speaker;
 	
