@@ -10,7 +10,7 @@
 				AND FIRST_NAME LIKE '%' || #{firstName} || '%'
 			</if>
 			<if test="employeeIds != null">
-				AND employee_id in
+				AND EMPLOYEE_ID IN
 					<foreach collection="employeeIds" item="id"
 					 		open="(" close=")" separator=",">
 						#{id}

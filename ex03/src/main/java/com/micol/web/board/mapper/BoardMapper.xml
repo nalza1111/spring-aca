@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.micol.web.board.BoardMapper">
+<mapper namespace="com.micol.web.board.mapper.BoardMapper">
 	
 	<sql id="condition">
 		<where>
-			<if test="title != null">
+			<if test="title != null and title !=''">
 				title LIKE '%' || #{title} || '%'
 			</if>
-			<if test="writer != null">
+			<if test="writer != null and writer !=''">
 				AND writer LIKE '%' || #{writer} || '%'
 			</if>
 			<if test="bnos != null">
@@ -19,7 +19,7 @@
 		</where>
 	</sql>
 	
-	<select id="getBoard" resultType="board">
+	<select id="getBoard" resultType="BoardVO">
 		Select BNO,
 			   TITLE,
 			   CONTENT,
@@ -64,8 +64,6 @@
 			   UPDATEDATE
 		 FROM TBl_BOARD
 		 <include refid="condition" /> 
-	</select>
-	<select id="getBoardAllWriter" resultType="board">
 	</select>
 	
 	<select id="count" resultType="int">

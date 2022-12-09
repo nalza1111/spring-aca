@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.micol.web.board.BoardMapper;
+import com.micol.web.board.mapper.BoardMapper;
 import com.micol.web.board.service.BoardVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -73,9 +73,5 @@ public class BoardMapperClient {
 		BoardVO vo = new BoardVO();
 		vo.setTitle("t");
 		System.out.println(mapper.count(vo));
-	}
-	//@Test
-	public void selectBoard() {
-		mapper.selectBoard().forEach(board -> System.out.println(board));
 	}
 }
