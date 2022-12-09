@@ -3,7 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		<setting name="jdbcTypeForNull" value="VARCHAR"/>
+	</settings>
 	<typeAliases>
-		<package name="com.micol.web"/> 
+		<typeAlias type="com.micol.web.board.service.BoardVO" alias="board"/>
+			<!-- boardVO, BoardVO -->
+		<package name="com.micol.web"/>
 	</typeAliases>
 </configuration>

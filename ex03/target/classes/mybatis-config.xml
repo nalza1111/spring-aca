@@ -8,7 +8,7 @@
 		<setting name="jdbcTypeForNull" value="VARCHAR"/>
 	</settings>
 	<typeAliases>
-		<typeAlias type="com.micol.web.board.BoardVO" alias="board"/>
+		<typeAlias type="com.micol.web.board.service.BoardVO" alias="board"/>
 			<!-- boardVO, BoardVO -->
 		<package name="com.micol.web"/>
 	</typeAliases>

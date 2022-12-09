@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	
-	<bean id="tv" class="ex04.LgTv"></bean>
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<!-- 수백개가 넘어가기 때문에 일일히 빈등록해서 쓸 수 없음 -->
+	<!-- <bean id="myspeaker" class="ex04.AppleSpeaker"></bean>
+	<bean id="tv" class="ex04.SamsungTv">
+		세터의 메소드로 객체주입
+		<property name="speaker" ref="myspeaker"></property>
+		생성자로 객체주입
+		 생성자인수가 두개면 밑에도 두개 들어가야 순서지켜주기(순서 중요)
+		<constructor-arg name="speaker" ref="myspeaker"></constructor-arg>
+		lombok을 쓰면 세터든 생성자든 괜찮음 
+	</bean> -->
+	<!-- <bean scope="prototype"></bean> 매번생성
+	<bean scope="request"></bean> 요청시
+	<bean scope="singleton"></bean> 기본 한개
+	<bean scope="session"></bean> 1유저 1객체 -->
+	<!-- 하위모든 것 스캔해서 자동 빈등록 -->
+	<context:component-scan base-package="ex04"></context:component-scan>
 </beans>

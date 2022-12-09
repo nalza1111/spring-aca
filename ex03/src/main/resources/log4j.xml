@@ -6,41 +6,13 @@
 	<appender name="console" class="org.apache.log4j.ConsoleAppender">
 		<param name="Target" value="System.out" />
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+			<param name="ConversionPattern" value="%-5p: %c(%L) - %m%n" />
 		</layout>
 	</appender>
-	
-	<!-- Application Loggers -->
-	<logger name="com.micol.web">
-		<level value="info" />
-	</logger>
-	
-	<!-- 3rdparty Loggers -->
-	<logger name="org.springframework.core">
-		<level value="info" />
-	</logger>
-	
-	<logger name="org.springframework.beans">
-		<level value="info" />
-	</logger>
-	
-	<logger name="org.springframework.context">
-		<level value="info" />
-	</logger>
 
-	<logger name="org.springframework.web">
-		<level value="info" />
-	</logger>
-	
-	<logger name="jdbc.audit">
-		<level value="warn" />
-	</logger>
-	<logger name="jdbc.resultset">
-		<level value="warn" />
-	</logger>
-	
+	<!-- 루트로거만 빼고 다 지움 -->
+	<!-- Root Logger trace  debug  info  warn  error  fetal -->
 
-	<!-- Root Logger      trace  debug  info  warn  error  fetal -->
 	<root>
 		<priority value="info" />
 		<appender-ref ref="console" />

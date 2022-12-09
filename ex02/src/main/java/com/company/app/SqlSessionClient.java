@@ -10,8 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.company.app.emp.EmpMapper;
-import com.company.app.emp.EmpVO;
+import com.company.app.emp.mapper.EmpMapper;
+import com.company.app.emp.service.EmpVO;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 //설정파일위치{"",""}여러개 넣을 수 있음 root의 sqlsession을 불러올거임
 @ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -38,9 +39,8 @@ public class SqlSessionClient {
 		vo.setEmployeeIds(Arrays.asList("100","101","102"));
 		List<EmpVO> list = mapper.getEmpAll(vo);
 		if(list != null) {
-			list.forEach(emp -> System.out.println(emp.getFirstName()));
+//			list.forEach(emp -> System.out.println(emp.getFirstName()));
 		}
-		
 	}
 	//@Test
 	public void insertEmp() {
@@ -70,10 +70,10 @@ public class SqlSessionClient {
 	public void getDept() {
 		//System.out.println(mapper.getDept().get(0).get("DEPARTMENT_NAME"));
 		//부서명만 모두 출력
-		mapper.getDept().forEach(dept -> System.out.println(dept.get("DEPARTMENT_NAME")));
+//		mapper.getDept().forEach(dept -> System.out.println(dept.get("DEPARTMENT_NAME")));
 	}
 	//@Test
 	public void getDeptAll() {
-		mapper.getDeptAll().forEach(dept -> System.out.println(dept.get("departmentName")));
+//		mapper.getDeptAll().forEach(dept -> System.out.println(dept.get("departmentName")));
 	}
 }

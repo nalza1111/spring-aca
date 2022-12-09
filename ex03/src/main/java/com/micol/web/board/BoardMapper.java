@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Select;
 
+import com.micol.web.board.service.BoardVO;
+
 public interface BoardMapper {
 	public BoardVO getBoard(String bno);//
 	public int updateBoard(BoardVO vo);//

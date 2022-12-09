@@ -26,12 +26,12 @@
 			   WRITER,
 			   REGDATE,
 			   UPDATEDATE
-		 FROM TB1_BOARD
+		 FROM TBl_BOARD
 		 WHERE BNO = #{bno}
 	</select>
 	
 	<update id="updateBoard">
-		UPDATE TB1_BOARD SET TITLE = #{title},
+		UPDATE TBl_BOARD SET TITLE = #{title},
 							 CONTENT = #{content},
 							 UPDATEDATE = SYSDATE
 		 WHERE BNO = #{bno}
@@ -41,7 +41,7 @@
 		<selectKey keyProperty="bno" resultType="string" order="BEFORE">
 			SELECT SEQ_BOARD.NEXTVAL FROM DUAL
 		</selectKey>
-		INSERT INTO TB1_BOARD VALUES(
+		INSERT INTO TBl_BOARD VALUES(
 										  #{bno},
 										  #{title},
 										  #{content},
@@ -52,7 +52,7 @@
 	</insert>
 	
 	<delete id="deleteBoard">
-		DELETE FROM TB1_BOARD WHERE BNO = #{bno}
+		DELETE FROM TBl_BOARD WHERE BNO = #{bno}
 	</delete>
 	
 	<select id="getBoardAll" resultType="map">
@@ -62,14 +62,14 @@
 			   WRITER,
 			   REGDATE,
 			   UPDATEDATE
-		 FROM TB1_BOARD
+		 FROM TBl_BOARD
 		 <include refid="condition" /> 
 	</select>
 	<select id="getBoardAllWriter" resultType="board">
 	</select>
 	
 	<select id="count" resultType="int">
-		SELECT COUNT(*) FROM TB1_BOARD
+		SELECT COUNT(*) FROM TBl_BOARD
 		<include refid="condition" /> 
 	</select>
 	

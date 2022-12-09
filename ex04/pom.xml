@@ -3,13 +3,16 @@
   <groupId>co.company</groupId>
   <artifactId>ex04</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  
+  <properties>
+  	<org.springframework-version>5.3.24</org.springframework-version>
+  	<org.slf4j-version>1.6.6</org.slf4j-version>
+  </properties>
   <dependencies>
   	<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-context</artifactId>
-	    <version>5.3.24</version>
+	    <version>${org.springframework-version}</version>
 	</dependency>
 	<!-- https://mvnrepository.com/artifact/junit/junit -->
 	<dependency>
@@ -18,7 +21,35 @@
 	    <version>4.13</version>
 	    <scope>test</scope>
 	</dependency>
-
+	<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+	<dependency>
+	    <groupId>org.projectlombok</groupId>
+	    <artifactId>lombok</artifactId>
+	    <version>1.18.24</version>
+	    <scope>provided</scope>
+	</dependency>
+	<!--
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context</artifactId>
+	    <version>5.3.24</version>
+	</dependency>
+	밑에 추가하고 test로 변경
+	버전일일히 맞추기어려우니 프로퍼티 추가하고 버전을 ${}로 맞춤
+	 -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-test</artifactId>
+	    <version>${org.springframework-version}</version>
+	</dependency>
+	
+	<!-- Logging -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+	
   </dependencies>
   <build>
 	<plugins>

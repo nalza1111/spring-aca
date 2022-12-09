@@ -1,8 +1,14 @@
 package ex04;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@RunWith(SpringJUnit4ClassRunner.class)//pom.xml에서 추가한 스프링-테스트
+@ContextConfiguration(locations = "classpath:applicationContext.xml")
 public class App {
 //	public static void main(String[] args) {
 //		//System.out.println("빌드 테스트");
@@ -21,11 +27,16 @@ public class App {
 		Tv tv = ctx.getBean(SamsungTv.class);
 		tv.on();
 	}
-	@Test
+	//@Test
 	public void text2() {
 		GenericXmlApplicationContext ctx = 
 			new GenericXmlApplicationContext("classpath:applicationContext.xml");
 		Tv tv = ctx.getBean(Tv.class);
+		tv.on();
+	}
+	@Autowired Tv tv;//티비 객체를 따로 할것없이 어노테이션으로 객체받아옴
+	@Test
+	public void text3() {
 		tv.on();
 	}
 }
