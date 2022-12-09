@@ -1,3 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.micol.web.board.BoardMapper"></mapper>
+<mapper namespace="com.micol.web.board.BoardMapper">
+	
+	<sql id="condition">
+		<where>
+			<if test="title != null">
+				title LIKE '%' || #{title} || '%'
+			</if>
+			<if test="writer != null">
+				AND writer LIKE '%' || #{writer} || '%'
+			</if>
+			<if test="bnos != null">
+				AND BNO IN
+					<foreach collection="bnos" item="b" open="(" close=")" separator=",">
+						#{b}
+					</foreach>
+			</if>
+		</where>
+	</sql>
+	
+	<select id="getBoard" resultType="board">
+		Select BNO,
+			   TITLE,
+			   CONTENT,
+			   WRITER,
+			   REGDATE,
+			   UPDATEDATE
+		 FROM TB1_BOARD
+		 WHERE BNO = #{bno}
+	</select>
+	
+	<update id="updateBoard">
+		UPDATE TB1_BOARD SET TITLE = #{title},
+							 CONTENT = #{content},
+							 UPDATEDATE = SYSDATE
+		 WHERE BNO = #{bno}
+	</update>
+	
+	<insert id="insertBoard">
+		<selectKey keyProperty="bno" resultType="string" order="BEFORE">
+			SELECT SEQ_BOARD.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO TB1_BOARD VALUES(
+										  #{bno},
+										  #{title},
+										  #{content},
+										  #{writer},
+										  SYSDATE,
+										  SYSDATE
+									 )
+	</insert>
+	
+	<delete id="deleteBoard">
+		DELETE FROM TB1_BOARD WHERE BNO = #{bno}
+	</delete>
+	
+	<select id="getBoardAll" resultType="map">
+		Select BNO,
+			   TITLE,
+			   CONTENT,
+			   WRITER,
+			   REGDATE,
+			   UPDATEDATE
+		 FROM TB1_BOARD
+		 <include refid="condition" /> 
+	</select>
+	<select id="getBoardAllWriter" resultType="board">
+	</select>
+	
+	<select id="count" resultType="int">
+		SELECT COUNT(*) FROM TB1_BOARD
+		<include refid="condition" /> 
+	</select>
+	
+</mapper>
