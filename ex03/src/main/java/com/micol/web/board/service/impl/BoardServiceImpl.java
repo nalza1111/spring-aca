@@ -6,9 +6,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.micol.web.board.service.BoardVO;
 import com.micol.web.board.mapper.BoardMapper;
 import com.micol.web.board.service.BoardService;
+import com.micol.web.board.service.BoardVO;
+import com.micol.web.common.Paging;
+
+import freemarker.template.EmptyMap;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -35,7 +38,10 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<Map<String, Object>> getBoardAll(BoardVO vo) {
+	public List<Map<String, Object>> getBoardAll(BoardVO vo, Paging paging) {
+		paging.setTotalRecord(boardMapper.count(vo));
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
 		return boardMapper.getBoardAll(vo);
 	}
 

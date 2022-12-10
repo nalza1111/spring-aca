@@ -3,6 +3,8 @@ package com.micol.web.board.service;
 import java.util.List;
 import java.util.Map;
 
+import com.micol.web.common.Paging;
+
 public interface BoardService {
 	//글조회
 	public BoardVO getBoard(String bno);//
@@ -13,7 +15,7 @@ public interface BoardService {
 	//글삭제
 	public int deleteBoard(BoardVO vo);//
 	//글전체 + 검색
-	public List<Map<String, Object>> getBoardAll(BoardVO vo);
+	public List<Map<String, Object>> getBoardAll(BoardVO vo, Paging paging);
 	//글전체 + 검색 카운트
 	public int count(BoardVO vo);
 }

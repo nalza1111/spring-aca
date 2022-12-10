@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Mybatis -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:/config/mybatis-config.xml"/>
+		<property name="mapperLocations" value="classpath*:com/company/app/**/mapper/*Mapper.xml" />
+	</bean>
+	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+	
+	<!-- 인터페이스 스캔 -> 프록시 클래스 생성 빈등록 MapperScanner:mapper인터페이스 스캔 자동 구현객체 만들어(@Repository에 빈등록자동해줌) -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	  <property name="basePackage" value="com.company.app.**.mapper" />
+	</bean>
+
+</beans>

@@ -25,10 +25,17 @@
 	</select>
 	
 	<select id="getEmpAll" resultType="EmpVO">
+	SELECT * FROM ( SELECT ROWNUM RN, A.* FROM (
+	
 		SELECT *
 		  FROM EMPLOYEES
 		<include refid="condition" />
+<!-- 괄호를 문자로 인식 -->
+<![CDATA[		
+		) A WHERE ROWNUM <= #{last} ) WHERE RN> = #{first}
+]]>
 	</select>
+	
 	<!-- 단건조회 -->
 	<select id="getEmp" resultType="EmpVO" parameterType="string">
 		SELECT *

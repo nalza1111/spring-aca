@@ -8,9 +8,11 @@ import org.springframework.ui.Model;
 //@Component
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.company.app.common.Paging;
 import com.company.app.emp.service.EmpService;
 import com.company.app.emp.service.EmpVO;
 @Controller
+@RequestMapping("/emp")//공통된 매핑은 위로 뺄 수 있음
 public class EmployeeContoller {
 	
 //	@Autowired EmpService empService;
@@ -21,10 +23,30 @@ public class EmployeeContoller {
 //		return "empSelectAll";//pg명
 //	}
 	@Autowired EmpService empService;
-	//전체조회
-	@RequestMapping("empSelectAll")
-	public String empSelectAll(Model model, EmpVO vo) {//url명과 메소드명을 동일하게 주면 안헷갈림
-		model.addAttribute("emps",empService.getEmpAll(vo));
-		return "empSelectAll";//pg명
+	//전체조회 10개씩 조회
+//	@RequestMapping("/empSelectAll")
+//	public String empSelectAll(Model model, EmpVO vo, Integer page) {//url명과 메소드명을 동일하게 주면 안헷갈림
+//		int pageSize = 10;
+//		if (page != null) {
+//			vo.setLast((page-1)*pageSize+1);
+//			vo.setFirst(page*pageSize);
+//		}
+//		model.addAttribute("emps",empService.getEmpAll(vo));
+//		return "emp/empSelectAll";//pg명
+//	}
+	//paging객체사용 전체조회
+	@RequestMapping("/empSelectAll")
+	public String empSelectAll(Model model, EmpVO vo, Paging paging) {
+		paging.setPageUnit(3);
+		model.addAttribute("emps",empService.getEmpAll(vo, paging)); 
+		return "user/emp/empSelectAll";//pg명 뷰페이지이름
 	}
+	//단건조회
+	@RequestMapping("/empSelect")
+	public String empSelect(Model model, String id) {
+		//request().getparameter 할 것없이 위에 String id
+		model.addAttribute("emp",empService.getEmp(id));
+		return "emp/emp"; //이건 타일즈에 등록안해놨기에 안뜸
+	}
+	
 }

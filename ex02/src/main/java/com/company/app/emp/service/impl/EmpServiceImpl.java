@@ -3,9 +3,9 @@ package com.company.app.emp.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.company.app.common.Paging;
 import com.company.app.emp.mapper.EmpMapper;
 import com.company.app.emp.service.EmpService;
 import com.company.app.emp.service.EmpVO;
@@ -18,7 +18,11 @@ public class EmpServiceImpl implements EmpService{
 	@Autowired EmpMapper empMapper;
 	
 	@Override
-	public List<EmpVO> getEmpAll(EmpVO vo) {
+	public List<EmpVO> getEmpAll(EmpVO vo, Paging paging) {
+		//토탈페이지만 들어가면 paging객체의 모든 값이 계산됨
+		paging.setTotalRecord(empMapper.count(vo));//first, start 계산
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
 		return empMapper.getEmpAll(vo);
 	}
 

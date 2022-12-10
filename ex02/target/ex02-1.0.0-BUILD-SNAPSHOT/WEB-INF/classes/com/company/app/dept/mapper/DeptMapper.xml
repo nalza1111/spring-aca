@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.app.dept.mapper.DeptMapper">
+
+	<insert id="insertDept">
+		<selectKey keyProperty="departmentId" resultType="string" order="BEFORE">
+			SELECT MAX(DEPARTMENT_ID)+10 FROM DEPARTMENTS
+		</selectKey>
+			INSERT INTO DEPARTMENTS(
+									DEPARTMENT_ID,
+									DEPARTMENT_NAME,
+									MANAGER_ID,
+									LOCATION_ID
+						) VALUES (#{departmentId},
+								  #{departmentName},
+								  100,
+								  1700
+								)
+	</insert>
+	<select id="getDeptAll" resultType="DeptVO">
+		SELECT DEPARTMENT_ID,
+				DEPARTMENT_NAME,
+				MANAGER_ID,
+				LOCATION_ID
+			FROM DEPARTMENTS
+	</select>
+
+</mapper>

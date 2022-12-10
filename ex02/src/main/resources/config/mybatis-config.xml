@@ -8,8 +8,8 @@
 		<setting name="jdbcTypeForNull" value="VARCHAR"/>
 	</settings>
 	<typeAliases>
-		<typeAlias type="com.company.app.emp.service.EmpVO" alias="emp"/>
-			<!--empVO, EmpVO package쓰면 되니까 아픙론 위에꺼안써도됨-->
+		<!-- <typeAlias type="com.company.app.emp.service.EmpVO" alias="emp"/> -->
+			<!--empVO, EmpVO package쓰면 되니까 아픙론 위에꺼안써도됨 empVO EmpVO사용해야 함-->
 		<package name="com.company.app"/> 
 	</typeAliases>
 </configuration>

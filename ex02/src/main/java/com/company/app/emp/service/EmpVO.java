@@ -23,4 +23,7 @@ public class EmpVO {
 	String salary;
 	
 	List<String> employeeIds;
+	
+	Integer first = 1;
+	Integer last = 10;
 }

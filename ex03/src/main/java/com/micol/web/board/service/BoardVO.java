@@ -21,4 +21,7 @@ public class BoardVO {
     
     List<String> bnos;
     
+    Integer first = 1;
+    Integer last = 10;
+    
 }

@@ -62,8 +62,12 @@
 			   WRITER,
 			   REGDATE,
 			   UPDATEDATE
-		 FROM TBl_BOARD
-		 <include refid="condition" /> 
+		 FROM ( SELECT ROWNUM RN, A.* FROM (
+				SELECT * FROM TBl_BOARD
+		 <include refid="condition" />
+<![CDATA[		
+		) A WHERE ROWNUM <= #{last} ) WHERE RN >= #{first}
+]]>
 	</select>
 	
 	<select id="count" resultType="int">
