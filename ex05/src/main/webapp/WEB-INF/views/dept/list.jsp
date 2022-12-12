@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>List</title>
+	<title>부서 리스트</title>
 </head>
 <body>
 	<script>
@@ -14,47 +14,30 @@
 			let result = '${result}'
 			//debugger
 			if(result) {
-				//alert('${result}')
 				$(".modal-body").html(result)
-				//모달 생성
-				/* const myModal = new bootstrap.Modal('#exampleModal', {
-					  keyboard: false
-					}) */
-				// show
-				/* let exampleModal = document.querySelector("#exampleModal"); */
-				/* myModal.show(exampleModal)  *///layout.jsp에서 js 파일들 바디에서 헤더안으로 올리기
 				$('#exampleModal').modal() //모달생성 modal(opti) opti는 옵션
 				$("#exampleModal").modal('show');//4버전 주석은 5버전
 		}})
 	</script>
-	<h3>사원리트스</h3>
-	<div> 결과 ${ result}</div>
-	<table>
-		<thead>
-		</thead>
-		<tbody>
-			<c:forEach items="${emps}" var="emp">
-				<tr>
-					<!-- 상대경로 -->
-					<td><a href="select?empId=${emp.employeeId }">${emp.employeeId }</a></td>
-					<td><a href="../emp/select?empId=${emp.employeeId }">${emp.employeeId }</a></td>
-					<!-- 절대경로 -->
-					<td><a href="${pageContext.request.contextPath}/emp/select?empId=${emp.employeeId }"> ${emp.firstName } ${emp.lastName }</a></td>
-					<td>${emp.departmentId }</td>
-					<td>${emp.hireDate }</td>
-					<td>${emp.jobId }</td>
-				</tr>
-			</c:forEach>
-		</tbody>
+	<h3>부서리스트</h3>
+	<div>결과${result }</div>
+		<table>
+			<thead>
+			</thead>
+			<tbody>
+				<c:forEach items="${depts}" var="dept">
+					<tr>
+						<!-- 상대경로 -->
+						<td><a href="select?departmentId=${dept.departmentId }">${dept.departmentId }</a></td>
+						<td><a href="../dept/select?departmentId=${dept.departmentId }">${dept.departmentName }</a></td>
+						<!-- 절대경로 -->
+						<td><a href="${pageContext.request.contextPath}/dept/select?departmentId=${dept.departmentId }"> ${dept.managerId }</a></td>
+						<td>${dept.locationId }</td>
+					</tr>
+				</c:forEach>
+			</tbody>
 	</table>
 	<a href="insert">입력</a>
-<!-- 페이징 시작 -->
-	<form name="searchFrm">
-		<input type="hidden" name="page" value="2">
-	</form>
-<my:paging paging="${paging }" jsFunc="gopage"></my:paging>
-	
-<!-- 페이징 종료 -->
 <!-- Modal -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
@@ -73,12 +56,16 @@
 	    </div>
 	  </div>
 	</div>
+<form name="searchFrm">
+		<input type="hidden" name="page" value="2">
+	</form>
+<my:paging paging="${paging }" jsFunc="gopage"></my:paging>
 <!-- 모달 -->
-	<script>
+<script>
 		function gopage(i) {
 			searchFrm.page.value = i;
 			searchFrm.submit();
 		}
-	</script>
+</script>
 </body>
 </html>

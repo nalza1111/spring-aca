@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.yedam.prjt.dept.mapper.DeptMapper">
-
+	<sql id="condition">
+		<where>
+			<if test="locationId != null and locationId != ''">
+				LOCATION_ID = #{locationId}
+			</if>
+			<if test="departmentName and departmentName !=''">
+				AND DEPARTMENT_NAME LIKE '%' || #{departmentName} || '%'
+			</if>
+		</where>
+	</sql>
 	<insert id="insertDept">
 		<selectKey keyProperty="departmentId" resultType="string" order="BEFORE">
 			SELECT MAX(DEPARTMENT_ID)+10 FROM DEPARTMENTS
@@ -17,12 +26,40 @@
 								  1700
 								)
 	</insert>
+	
 	<select id="getDeptAll" resultType="DeptVO">
+		SELECT DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID, LOCATION_ID FROM ( SELECT ROWNUM RN, A.* FROM ( 
+		SELECT * FROM DEPARTMENTS
+		<include refid="condition" />
+		<![CDATA[		
+		) A WHERE ROWNUM <= #{last} ) WHERE RN> = #{first}
+		]]>
+		
+	</select>
+	<select id="countDept" resultType="int">
+		SELECT COUNT(*) FROM DEPARTMENTS
+		<include refid="condition" />
+	</select>
+	
+	<delete id="deleteDept">
+		DELETE FROM DEPARTMENTS
+		WHERE DEPARTMENT_ID = #{departmentId}
+	</delete>
+	
+	<update id="updateDept">
+		UPDATE DEPARTMENTS
+			SET DEPARTMENT_NAME = #{departmentName},
+				MANAGER_ID = #{managerId},
+				LOCATION_ID = #{locationId}
+			 WHERE DEPARTMENT_ID = #{departmentId}
+	</update>
+	
+	<select id="getDept" resultType="DeptVO">
 		SELECT DEPARTMENT_ID,
 				DEPARTMENT_NAME,
 				MANAGER_ID,
 				LOCATION_ID
 			FROM DEPARTMENTS
+			WHERE DEPARTMENT_ID = #{departmentId}
 	</select>
-
 </mapper>

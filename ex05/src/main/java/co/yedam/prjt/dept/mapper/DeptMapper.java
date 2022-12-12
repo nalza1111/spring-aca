@@ -6,7 +6,7 @@ import co.yedam.prjt.dept.service.DeptVO;
 
 public interface DeptMapper {
 	//전체리스트
-	List<DeptVO> getDeptAll();
+	List<DeptVO> getDeptAll(DeptVO vo);
 	//생성
 	int insertDept(DeptVO vo);
 	//삭제
@@ -15,4 +15,6 @@ public interface DeptMapper {
 	int updateDept(DeptVO vo);
 	//개별검색
 	DeptVO getDept(String departmentId);
+	
+	int countDept(DeptVO vo);
 }

@@ -18,4 +18,7 @@ public class DeptVO {
 	String locationId;
 	
 	List<String> departmentIds;
+	
+	Integer first = 1;
+	Integer last = 10;
 }

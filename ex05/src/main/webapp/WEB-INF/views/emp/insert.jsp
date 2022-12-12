@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h3>사원등록</h3>
-	<form method="post" action=""></br>
+	<form method="post" action="insert"></br>
 		firstName: <input name="firstName"></br>
 		lastName: <input name="lastName"></br>
 		email: <input name="email"></br>
