@@ -9,7 +9,7 @@
 	<option value="60">IT
 	<option value="80">Sales
 </select>
-<<script type="text/javascript">
+<script type="text/javascript">
 searchFrm.departmentId.value = '${empVO.departmentId}'
 </script>
 <!-- paging객체 매핑 -->
