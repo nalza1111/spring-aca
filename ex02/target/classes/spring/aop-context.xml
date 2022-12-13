@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	<!-- <bean id="logAdvice" class="com.company.app.aop.LogAdvice"></bean>
+	<aop:config proxy-target-class="true">
+		적용할 곳=logAdvice
+		<aop:aspect ref="logAdvice">
+			..인수타입이 뭐가 되도 상관없다
+			<aop:pointcut expression="execution(* com.company.app..*Impl.*(..))" id="allpointcut"/>
+			실행시점  pointcut-ref="execution(* com.company.app..*Impl.*(..))"->1회용
+			<aop:before method="logBefore" pointcut-ref="allpointcut"/>
+		</aop:aspect>
+	</aop:config> -->
+	
+	<!-- java 설정시 알아서 커넥션처리함-->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<!-- Transaction Advice 설정 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+	<tx:attributes>
+	<tx:method name="get*" read-only="true" />
+	<tx:method name="*" />
+	</tx:attributes>
+	</tx:advice>
+	<!-- Transaction AOP 설정 -->
+	<aop:config>
+	<aop:pointcut expression="execution(public * com..*Impl.*(..))" id="txPointCut" />
+	<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut" />
+	</aop:config>
+</beans>

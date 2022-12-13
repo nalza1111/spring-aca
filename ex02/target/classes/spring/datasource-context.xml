@@ -14,5 +14,10 @@
 		<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 		<constructor-arg ref="hikariConfig" />
 	</bean>
+	
+	<!-- Transaction Manager 설정 pom.xml에 spring-tx를 넣어서 쓸 수 있음-->
+		<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 
 </beans>

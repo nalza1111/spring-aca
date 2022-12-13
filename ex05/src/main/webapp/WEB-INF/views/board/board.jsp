@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시판 상세페이지</title>
 </head>
 	<body>
-	${board }
+	<h3>게시판 상세페이지</h3>
 		<table>
 			<thead>
 				<tr>
@@ -25,6 +25,17 @@
 						<td>${board.updateDate }</td>
 					</tr>
 				</tbody>
+		</table>
+		<h3>댓글</h3>
+		<table>
+			<c:forEach items="${replys}" var="reply">
+				<tr>
+					<td>${reply.replyer}</td>
+					<td>${reply.reply}</td>
+					<td><c:if test="${reply.replyDate>=reply.updateDate}">${reply.replyDate}</c:if></td>
+					<td><c:if test="${reply.replyDate<reply.updateDate}">${reply.updateDate}</c:if></td>
+				</tr>
+			</c:forEach>
 		</table>
 	</body>
 </html>

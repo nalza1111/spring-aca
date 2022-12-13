@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.company.app.common.Paging;
 import com.company.app.emp.mapper.EmpMapper;
@@ -52,6 +53,14 @@ public class EmpServiceImpl implements EmpService{
 		} else {
 			return 99999;
 		}
+	}
+
+	@Override
+	//@Transactional
+	public int addData(String data) {
+		empMapper.insert(data);
+		empMapper.insert2(data);
+		return 0;
 	}
 
 }

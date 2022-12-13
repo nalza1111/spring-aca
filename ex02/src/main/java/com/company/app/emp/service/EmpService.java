@@ -2,6 +2,8 @@ package com.company.app.emp.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
+
 import com.company.app.common.Paging;
 
 
@@ -17,4 +19,7 @@ public interface EmpService {
 	//삭제
 	public int deleteEmp(String id);
 
+	//트랜잭션 실험용
+	
+	public int addData(String data);
 }
