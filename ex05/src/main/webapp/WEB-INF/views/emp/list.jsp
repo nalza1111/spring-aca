@@ -29,8 +29,11 @@
 	</script>
 	<h3>사원리트스</h3>
 	<div> 결과 ${ result}</div>
-	<table>
-		<thead>
+	<table  class="table">
+		<thead class="thead-dark">
+		<tr>
+			<th>employeeId</th><th>employeeId</th><th>Name</th><th>departmentId</th><th>hireDate</th><th>jobId</th>
+		</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${emps}" var="emp">

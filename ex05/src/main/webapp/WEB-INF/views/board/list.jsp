@@ -10,16 +10,16 @@
 </head>
 	<body>
 <!-- 검색조건 시작 -->
-		<form name="searchFrm">
-			title <input name="title" value="${boardVO.title }">
-			writer <input name="writer" value="${boardVO.writer }">
+		<form name="searchFrm"  class="form-inline" >
+			title <input name="title" value="${boardVO.title }" class="form-control mb-2 mr-sm-2">
+			writer <input name="writer" value="${boardVO.writer }" class="form-control mb-2 mr-sm-2">
 			<input type="hidden" name="page" value="1">
-			<button>검색</button>
+			<button class="btn btn-primary mb-2">검색</button>
 		</form>
 <!-- 검색조건 종료 -->
 <!-- 목록 시작 -->
-		<table>
-			<thead>
+		<table class="table">
+			<thead  class="thead-dark">
 				<tr>
 				<th>Bno</th><th>Title</th><th>Content</th><th>Writer</th><th>RegDate</th><th>UpdateDate</th>
 				</tr>

@@ -21,9 +21,10 @@
 	</script>
 	<h3>부서리스트</h3>
 	<div>결과${result }</div>
-		<table>
-			<thead>
-			</thead>
+		<table class="table">
+			<thead  class="thead-dark">
+			<tr>
+				<th>departmentId</th><th>departmentName</th><th>managerId</th><th>locationId</thead>
 			<tbody>
 				<c:forEach items="${depts}" var="dept">
 					<tr>

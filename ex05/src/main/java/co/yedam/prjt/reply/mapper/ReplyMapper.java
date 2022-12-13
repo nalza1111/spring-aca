@@ -14,4 +14,7 @@ public interface ReplyMapper {
 	public int deleteReply(String rno);
 	//댓글수정
 	public int updateReply(ReplyVO vo);
+	//댓글개별조회
+	public ReplyVO reply(String rno);
+	//최신댓글조회
 }

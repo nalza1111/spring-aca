@@ -15,13 +15,11 @@ import lombok.NoArgsConstructor;
 @Component
 public class ReplyVO {
 	  String rno;
-      String bno;
+      public String bno;
       String reply;
       String replyer;
-      @JsonFormat(pattern = "yyyy-MM-dd")
       @DateTimeFormat(pattern = "yyyy-MM-dd")
       String replyDate;
-      @JsonFormat(pattern = "yyyy-MM-dd")
       @DateTimeFormat(pattern = "yyyy-MM-dd")
       String updateDate;
 }

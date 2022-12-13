@@ -11,7 +11,11 @@
 	           UPDATEDATE
 	      FROM TBL_REPLY
 	      WHERE BNO = #{value}
-		
+	</select>
+	<select id="reply"  resultType="ReplyVO">
+		select *
+		 FROM TBL_REPLY
+	      WHERE RNO = #{value}
 	</select>
 
 	<insert id="insertReply">
@@ -36,7 +40,7 @@
 			WHERE RNO = #{RNO}
 	</delete>
 	<update id="updateReply">
-		UPDATE TBL_REPLY SET REPLY = #{reply},
+		UPDATE TBL_REPLY SET REPLY = #{reply}, REPLYER = #{replyer},
 						     UPDATEDATE = SYSDATE
                        WHERE RNO = #{rno}
 	</update>
