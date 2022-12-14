@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.app.emp.mapper.EmpMapper">
+<sql id="condition">
+		<where>
+			<if test="departmentId != null and departmentId != ''">
+				DEPARTMENT_ID = #{departmentId}
+			</if>
+			<if test="firstName and firstName !=''">
+				AND FIRST_NAME LIKE '%' || #{firstName} || '%'
+			</if>
+			<if test="employeeIds != null">
+				AND EMPLOYEE_ID IN
+					<foreach collection="employeeIds" item="id"
+					 		open="(" close=")" separator=",">
+						#{id}
+					</foreach>
+			</if>
+		</where>
+	</sql>	
+	<!-- 전체조회 -->
+	<select id="count" resultType="int">
+		SELECT COUNT(*) FROM EMPLOYEES
+		<include refid="condition" />
+	</select>
+	
+	<select id="getEmpAll" resultType="EmpVO">
+	SELECT * FROM ( SELECT ROWNUM RN, A.* FROM (
+	
+		SELECT *
+		  FROM EMPLOYEES
+		<include refid="condition" />
+<!-- 괄호를 문자로 인식 -->
+<![CDATA[		
+		) A WHERE ROWNUM <= #{last} ) WHERE RN> = #{first}
+]]>
+	</select>
+	
+	<!-- 단건조회 -->
+	<select id="getEmp" resultType="EmpVO" parameterType="string">
+		SELECT *
+		  FROM EMPLOYEES
+		  WHERE EMPLOYEE_ID = #{employee_id}
+	</select>
+	<update id="updateName" parameterType="empVO">
+		UPDATE EMPLOYEES
+		  SET FIRST_NAME = #{first_name}
+		 WHERE EMPLOYEE_ID = #{employee_id}
+	</update>
+	<select id="getDeptAll" resultType="map">
+		select department_id "departmentId",
+			   department_name "departmentName"
+		 from departments
+	</select>
+	<insert id="insertEmp" parameterType="empVO">
+		<selectKey keyProperty="employeeId" resultType="string" order="BEFORE">
+			SELECT MAX(EMPLOYEE_ID)+1 FROM EMPLOYEES
+		</selectKey>
+		INSERT INTO EMPLOYEES(
+							  EMPLOYEE_ID,
+							  FIRST_NAME,
+							  LAST_NAME,
+							  EMAIL,
+							  HIRE_DATE,
+							  JOB_ID
+					)VALUES(
+							  #{employeeId},
+				   			  #{firstName, jdbcType=VARCHAR},
+				  			  #{lastName},
+				  			  #{email},
+				   			  #{hireDate},
+				   	 	 	  #{jobId}
+				   	)
+	</insert>
+	
+	<select id="getManagerCheck" resultType="int">
+		SELECT COUNT(*)
+			FROM EMPLOYEES
+			WHERE MANAGER_ID = #{value}
+	</select>
+	
+	<delete id="deleteEmp">
+		DELETE FROM EMPLOYEES
+			WHERE EMPLOYEE_ID = #{value}
+	</delete>
+	
+</mapper>

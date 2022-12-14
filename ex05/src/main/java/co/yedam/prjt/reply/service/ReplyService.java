@@ -10,7 +10,7 @@ public interface ReplyService {
 	//댓글삭제
 	public int deleteReply(String rno);
 	//댓글수정
-	public ReplyVO updateReply(ReplyVO vo);
+	public int updateReply(ReplyVO vo);
 	//댓글개별조회
 	public ReplyVO reply(String rno);
 }

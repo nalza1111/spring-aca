@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		<setting name="jdbcTypeForNull" value="VARCHAR"/>
+	</settings>
+	<typeAliases>
+		<!-- <typeAlias type="com.company.app.emp.service.EmpVO" alias="emp"/> -->
+			<!--empVO, EmpVO package쓰면 되니까 앞으론 위에꺼 안써도됨 empVO EmpVO사용해야 함-->
+		<package name="com.yedam.exam"/> 
+	</typeAliases>
+</configuration>

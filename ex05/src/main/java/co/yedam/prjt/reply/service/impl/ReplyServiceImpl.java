@@ -27,7 +27,7 @@ public class ReplyServiceImpl implements ReplyService{
 		int result = replyMapper.insertReply(vo);
 		System.out.println(vo.toString());
 		if(result>0) {
-			//가장 최신 댓글검색
+			//select-key를 이용해 댓글검색
 			return(replyMapper.reply(vo.getRno()));
 		} else {
 			//입력시간과 업데이트 시간이 널임
@@ -41,15 +41,16 @@ public class ReplyServiceImpl implements ReplyService{
 	}
 
 	@Override
-	public ReplyVO updateReply(ReplyVO vo) {
+	public int updateReply(ReplyVO vo) {
 		//입력이 성공했다면 조회 후 vo를 리턴
-		int result = replyMapper.updateReply(vo);
-		if(result>0) {
-			return(replyMapper.reply(vo.getRno()));
-		} else {
-			//입력시간과 업데이트 시간이 널임
-			return vo;
-		}
+//		int result = replyMapper.updateReply(vo);
+		return replyMapper.updateReply(vo);
+		//		if(result>0) {
+//			return(replyMapper.reply(vo.getRno()));
+//		} else {
+//			//입력시간과 업데이트 시간이 널임
+//			return vo;
+//		}
 	}
 
 	@Override

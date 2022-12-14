@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+		.backYellow{
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+조회수 : [[${#lists.size(emps)}]]
+	<table>
+		<tr>
+			<th>no</th>
+			<th>employee_id</th>
+			<th>first_name</th>
+			<th>last_name</th>
+		</tr>
+		<tr th:each="emp, st : ${emps}" th:class="${st.odd} ? 'backYellow' :_"><!-- st않넣고 st.count대신 empstat?을 서도 됨 -->
+			 <td th:text="${st.count}">1</td><!-- jstl처럼 if사용가능 --><!-- _아무것도 주지 않음 -->
+			 <td th:text="${emp.employeeId}">200</td><!-- jstl처럼 if사용가능 -->
+			 <td th:text="${emp.firstName}">ddd</td>
+			 <td th:text="${emp.lastName}">aaa</td>
+			 <td th:text="${#dates.format(emp.hireDate,	'yyyy-MM-dd')}">2020/11/12</td>
+		 </tr><!-- vo가 date형이 아니면 오류남 -->
+	</table>
+</body>
+</html>

@@ -79,8 +79,8 @@
 			let tag = `<tr data-id="\${reply.rno}">
 				<td>\${reply.replyer}</td>
 				<td>\${reply.reply}</td>
-				<td>\${reply.replyDate}</td>
-				<td>\${reply.updateDate}</td>
+				<td>\${reply.replydate}</td>
+				<td>\${reply.updatedate}</td>
 				<td><button type="button" id="btnDelete" class="btn btn-primary mb-2">삭제</button></td>
 				<td><button type="button" id="btnSelect" class="btn btn-primary mb-2">조회</button></td>
 				<td><button type="button" id="btnReployUpdate" class="btn btn-primary mb-2">수정</button></td>

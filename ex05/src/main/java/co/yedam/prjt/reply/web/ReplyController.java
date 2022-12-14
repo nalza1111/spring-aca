@@ -30,14 +30,14 @@ public class ReplyController {
 	//댓글등록
 	@PostMapping("/reply")
 	public ReplyVO insert(ReplyVO vo) {
-		replyService.insertReply(vo);
+		vo = replyService.insertReply(vo);
 		log.info(vo);
 		return vo;
 	}
 	//댓글수정
 	@PutMapping("/reply")
 	public ReplyVO update(@RequestBody ReplyVO vo) {
-		vo = replyService.updateReply(vo);
+replyService.updateReply(vo);
 		log.info(vo);
 		return vo;
 	}

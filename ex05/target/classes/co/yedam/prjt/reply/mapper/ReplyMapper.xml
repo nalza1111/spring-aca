@@ -40,8 +40,13 @@
 			WHERE RNO = #{RNO}
 	</delete>
 	<update id="updateReply">
-		UPDATE TBL_REPLY SET REPLY = #{reply}, REPLYER = #{replyer},
-						     UPDATEDATE = SYSDATE
-                       WHERE RNO = #{rno}
+		<selectKey keyColumn="UPDATEDATE,REPLYDATE" keyProperty="replydate,updatedate" resultType="hashmap" order="AFTER">
+			SELECT REPLYDATE, UPDATEDATE FROM TBL_REPLY where RNO = #{rno}
+		</selectKey>
+		UPDATE TBL_REPLY 
+		   SET REPLY = #{reply}, 
+		       REPLYER = #{replyer},
+			   UPDATEDATE = SYSDATE
+        WHERE RNO = #{rno}
 	</update>
 </mapper>
