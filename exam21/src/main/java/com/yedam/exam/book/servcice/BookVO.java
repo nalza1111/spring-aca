@@ -20,7 +20,7 @@ public class BookVO {
 	String bookName; 
 	String bookCoverimg;
 	@JsonFormat(pattern = "yyyy/MM/dd")
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date bookDate;     
 	String bookPrice;    
 	String bookPublisher;

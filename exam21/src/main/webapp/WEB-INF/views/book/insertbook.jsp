@@ -48,8 +48,8 @@
 	<form id="form1">
 		도서번호:<input type="number" name="bookNum" value="${bookNum}" readonly><br />
 		도서명::<input type="text" name="bookName"><br /> 도서표지:<input
-			type="text" name="bookCoverimg"><br /> 출판일자(yyyy/MM/dd):<input
-			type="text" name="bookDate"><br /> 금액:<input type="text"
+			type="text" name="bookCoverimg"><br /> 출판일자:<input
+			type="date" name="bookDate"><br /> 금액:<input type="text"
 			name="bookPrice"><br /> 출판사:<input type="text"
 			name="bookPublisher"><br /> 도서소개:<input type="text"
 			name="bookInfo"><br />

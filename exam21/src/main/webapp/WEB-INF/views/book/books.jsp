@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> </code>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,6 +33,7 @@
 					<td>\${book.bookName}</td>
 					<td>\${book.bookCoverimg}</td>
 					<td>\${book.bookDate}</td>
+					<td>##<fmt:formatDate value="${book.bookDate}" pattern="yyyy/MM/dd" />##</td>
 					<td>\${result}</td>
 					<td>\${book.bookPublisher}</td>
 					<td>\${book.bookInfo}</td>
@@ -42,7 +44,7 @@
 				$("table").on("click", "tr", function(){
 					let id = $(this).closest("tr").data("id");
 					console.log(encodeURIComponent(id));
-					location.href="/book/bookSelect?bookNo="+id;
+					location.href="../book/bookSelect?bookNo="+id;
 				})
 			}
 			

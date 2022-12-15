@@ -22,8 +22,9 @@
 	</insert>
 	
 	<select id="getBook" resultType="BookVO">
-		SELECT * FROM BOOK_TBL_06 where = BOOK_NO = #{bookNo}
+		SELECT * FROM BOOK_TBL_06 where BOOK_NO = #{bookNo}
 	</select>
+	
 	<select id="getBookNum" resultType="int">
 		SELECT MAX(BOOK_NO)+1 FROM BOOK_TBL_06
 	</select>
