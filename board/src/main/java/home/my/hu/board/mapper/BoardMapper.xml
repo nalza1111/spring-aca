@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="home.my.hu.board.mapper.BoardMapper">
+	
+	<sql id="condition">
+		<where>
+			<if test="title != null and title !=''">
+				title LIKE '%' || #{title} || '%'
+			</if>
+			<if test="writer != null and writer !=''">
+				AND writer LIKE '%' || #{writer} || '%'
+			</if>
+			<if test="bnos != null">
+				AND BNO IN
+					<foreach collection="bnos" item="b" open="(" close=")" separator=",">
+						#{b}
+					</foreach>
+			</if>
+		</where>
+	</sql>
+	
+	<select id="getBoard" resultType="BoardVO">
+		Select BNO,
+			   TITLE,
+			   CONTENT,
+			   WRITER,
+			   REGDATE,
+			   UPDATEDATE
+		 FROM TBl_BOARD
+		 WHERE BNO = #{bno}
+	</select>
+	
+	<update id="updateBoard">
+		UPDATE TBl_BOARD SET TITLE = #{title},
+							 CONTENT = #{content},
+							 UPDATEDATE = SYSDATE
+		 WHERE BNO = #{bno}
+	</update>
+	
+	<insert id="insertBoard">
+		<selectKey keyProperty="bno" resultType="string" order="BEFORE">
+			SELECT SEQ_BOARD.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO TBl_BOARD VALUES(
+										  #{bno},
+										  #{title},
+										  #{content},
+										  #{writer},
+										  SYSDATE,
+										  SYSDATE
+									 )
+	</insert>
+	
+	<delete id="deleteBoard">
+		DELETE FROM TBl_BOARD WHERE BNO = #{bno}
+	</delete>
+	
+	<select id="getBoardAll" resultType="map">
+		Select BNO,
+			   TITLE,
+			   CONTENT,
+			   WRITER,
+			   REGDATE,
+			   UPDATEDATE
+		 FROM ( SELECT ROWNUM RN, A.* FROM (
+				SELECT * FROM TBl_BOARD
+		 <include refid="condition" />
+<![CDATA[		
+		) A WHERE ROWNUM <= #{last} ) WHERE RN >= #{first}
+]]>
+	</select>
+	
+	<select id="count" resultType="int">
+		SELECT COUNT(*) FROM TBl_BOARD
+		<include refid="condition" /> 
+	</select>
+	
+</mapper>
