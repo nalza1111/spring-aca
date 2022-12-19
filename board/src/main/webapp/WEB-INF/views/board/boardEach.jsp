@@ -22,9 +22,13 @@
 		<button id="del">포스트삭제</button>
 	</form>
 	<button id="delButton">삭제</button>
+	<button id="upButton">수정</button>
 	<script>
 		delButton.addEventListener("click", ev => {
 			location.assign('delete?bno=${board.bno}');
+		})
+		upButton.addEventListener("click", ev => {
+			location.assign('update/${board.bno}');
 		})
 	</script>	
 </body>

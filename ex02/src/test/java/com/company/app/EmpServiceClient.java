@@ -23,7 +23,7 @@ public class EmpServiceClient {
 		EmpVO vo = empservice.getEmp("100");
 		//log.info(vo);
 	}
-	//@Test
+	@Test
 	public void deleteEmp() {
 		String number = "100";
 		if(empservice.deleteEmp(number)==99999) {
@@ -32,7 +32,7 @@ public class EmpServiceClient {
 			log.info(number + "번 삭제완료");
 		}
 	}
-	@Test
+	//@Test
 	public void addData() {
 		empservice.addData("3555555555");
 	}

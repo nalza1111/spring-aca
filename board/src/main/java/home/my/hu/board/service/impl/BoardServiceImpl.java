@@ -1,4 +1,4 @@
-package home.my.hu.board.service.imple;
+package home.my.hu.board.service.impl;
 
 import java.util.List;
 import java.util.Map;
