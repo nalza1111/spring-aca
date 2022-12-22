@@ -127,7 +127,7 @@
 				//method, method는 겟타입생략가능,
 				//data:, 매개변수없어서 안적어도 됨
 				//dataType, 데이터타입은 생략가능(리퀘스트바디가 있으면 꼭 적기)
-				//contentType 서버에서 어떤 타입을 받을 것인지
+				//contentType 서버에서 어떤 타입을 보낼 것인지
 			}).then( res => {
 				/* for(user of res){
 					$("<tr>").append($("<td>").html(user.id))
