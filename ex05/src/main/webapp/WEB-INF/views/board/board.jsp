@@ -137,7 +137,6 @@
 				<textarea class="form-control" rows="5" id="reply"></textarea>
 				replyer <input type="text" class="form-control" id="replyer">
 				<button type="button" id="btnReployInsert" class="btn btn-primary mb-2">댓글작성</button>
-				
 			</div>
 		</form>
 	</body>

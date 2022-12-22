@@ -5,15 +5,29 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<style>
+		body {
+			width: 80%;
+			margin : auto;
+		}
+		.form-group {
+			margin : 0 auto;
+		}
+	</style>
 </head>
 <body>
-	<h3>게시판등록</h3>
-	<form method="post" action="insert"></br>
-		Title : <input name="title"></br>
-		Writer : <input name="Writer"></br>
-		Content: <input name="Content"></br>
-		RegDate : <input type="date" name="RegDate"></br>
-		<button>등록</button>
-	</form>
+	<div class="form-group">
+		<form method="post" action="insert"class="form-group">
+			Title : <input name="title"class="form-control">
+			Writer : <input name="Writer"class="form-control">
+			Content: <input name="Content" class="form-control">
+			<div class="form-group">
+				<label for="comment">Content:</label>
+				<textarea class="form-control" rows="5" name="Content"></textarea>
+			</div>
+			RegDate : <input type="date" name="RegDate"class="class="form-control"">
+			<button>등록</button>
+		</form>
+	</div>
 </body>
 </html>

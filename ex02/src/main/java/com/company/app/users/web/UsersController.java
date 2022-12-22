@@ -59,7 +59,7 @@ public class UsersController {
 	}
 	//전체조회 1)
 	@GetMapping("/users")
-	@ResponseBody
+	@ResponseBody// 이거 적지 않으면 페이지가 넘어감
 	public List<UserVO> userlist(){
 		return userService.getUserList(null);
 	}

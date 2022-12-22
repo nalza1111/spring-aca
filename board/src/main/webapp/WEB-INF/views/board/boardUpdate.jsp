@@ -6,19 +6,27 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<style>
+		body {
+			width: 80%;
+			margin : auto;
+		}
+		.form-group {
+			margin : 0 auto;
+		}
+	</style>
 </head>
 <body>
-	<h3>게시판수정</h3>
-	${board.regDate}
-	${board.updateDate}
-	<form method="post" action="../update"></br>
-		bno : <input name="bno" value="${board.bno}"></br>
-		Title : <input name="title" value="${board.title}"></br>
-		Writer : <input name="Writer" value="${board.writer}"></br>
-		Content: <input name="Content" value="${board.content}"></br>
-		regDate : <input type="date" name="RegDate" value="<fmt:formatDate value="${board.regDate }" pattern="yyyy-MM-dd" />"></br>
-		updateDate : <input type="date" name="updateDate" value="<fmt:formatDate value="${board.updateDate }" pattern="yyyy-MM-dd" />"></br>
-		<button>수정</button>
-	</form>
+	<div class="form-group">
+		<form method="post" action="../update" class="form-group">
+			bno  <input name="bno" value="${board.bno}"class="form-control" readonly>
+			Title  <input name="title" value="${board.title}"class="form-control">
+			Writer  <input name="Writer" readonly value="${board.writer}"class="form-control">
+			Content <input name="Content" value="${board.content}"class="form-control">
+			regDate  <input type="date" readonly name="RegDate" value="<fmt:formatDate value="${board.regDate }" pattern="yyyy-MM-dd" />" class="form-control">
+			updateDate  <input type="date" name="updateDate" value="<fmt:formatDate value="${board.updateDate }" pattern="yyyy-MM-dd" />"class="form-control">
+			<button>수정</button>
+		</form>
+	</div>
 </body>
 </html>

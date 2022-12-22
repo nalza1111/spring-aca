@@ -28,8 +28,8 @@
 				$.ajax({
 					url : path + '/users',
 					method : "post",
-					data : $('#form1').serializeObject(), //리퀘스트바디가있음->json화->스트링화
-					//contentType : "application/json;"//보내는 파일은 json입니다 data와 세트->서비스에 리퀘스트바디가없음
+					data : $('#form1').serializeObject(),
+					//contentType : "application/json;"//애초에 json으로 보내서 필요없나?
 				}).then( res =>{
 					// jquery의 replaceWith이용
 					console.log(res);
@@ -80,7 +80,7 @@
 					url : path + '/users',
 					method : "put",
 					data : JSON.stringify($('#form1').serializeObject()), //리퀘스트바디가있음->json화->스트링화
-					contentType : "application/json;"//보내는 파일은 json입니다 data와 세트
+					contentType : "application/json;"
 				}).then( res =>{
 					// jquery의 replaceWith이용
 					console.log(res);

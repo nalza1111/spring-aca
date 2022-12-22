@@ -6,8 +6,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Board List</title>
+	<meta charset="UTF-8">
+	<title>Board List</title>
+	<style>
+		body {
+			width: 80%;
+			margin : auto;
+		}
+	</style>
 </head>
 <body>
 	<form name="searchFrm"  class="form-inline" >
@@ -16,8 +22,8 @@
 			<input type="hidden" name="page" value="1">
 			<button class="btn btn-primary mb-2">검색</button>
 		</form>
-	<table>
-		<thead>
+	<table class="table">
+		<thead class="thead-dark">
 			<tr>
 				<th>Bno</th><th>Title</th><th>Content</th><th>Writer</th><th>RegDate</th><th>UpdateDate</th>
 			</tr>
@@ -37,6 +43,7 @@
 	</table>
 	<my:paging paging="${paging }" jsFunc="gopage"></my:paging>
 	<a href="boardInsert">글쓰기</a>
+	</div>
 	<!-- 페이징 종료 -->
 	<script>
 		function gopage(i) {
