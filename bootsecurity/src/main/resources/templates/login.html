@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Spring Security Example </title>
+    </head>
+    <body>
+        <div th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
+        <form th:action="@{/signIn}" method="post"> 
+            <div><label> User Name : <input type="text" name="userId"/> </label></div>
+            <div><label> Password: <input type="password" name="pw"/> </label></div>
+            <div><input type="submit" value="Sign In"/></div>
+        </form>
+        <!-- 파라미터이름은 고정..여기서 바꿀 수 있나 봄 >> 설정하고매칭-->
+    </body>
+</html>
