@@ -1,9 +1,26 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="https://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!-- ===https://github.com/thymeleaf/thymeleaf-extras-springsecurityd에서 네임스페이스 가져옴=== -->
     <head>
         <title>Hello World!</title>
     </head>
+    
     <body>
+    <!--===https://www.thymeleaf.org/doc/articles/springsecurity.html에서 가져옴===-->
+    <div sec:authorize="isAuthenticated()">
+	  This content is only shown to authenticated users.
+	</div>
+	<div sec:authorize="hasRole('ROLE_ADMIN')">
+	  This content is only shown to administrators.
+	</div>
+	<div sec:authorize="hasRole('ROLE_USER')">
+	  This content is only shown to users.
+	</div>
+	Logged user: <span sec:authentication="name">Bob</span>
+	Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
+    <!--===https://www.thymeleaf.org/doc/articles/springsecurity.html에서 가져옴 끝===-->
         <h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Sign Out"/>
